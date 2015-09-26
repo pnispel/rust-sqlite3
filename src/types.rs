@@ -62,13 +62,13 @@ impl FromSql for f64 {
 
 impl ToSql for u64 {
     fn to_sql(&self, s: &mut PreparedStatement, ix: ParamIx) -> SqliteResult<()> {
-        s.bind_int64(ix, *self as i64);
+        s.bind_int64(ix, *self as i64)
     }
 }
 
 impl FromSql for u64 {
     fn from_sql(row: &ResultRow, col: ColIx) -> SqliteResult<u64> {
-        Ok(row.column_int64(col) as u64);
+        Ok(row.column_int64(col) as u64)
     }
 }
 
