@@ -62,7 +62,7 @@ impl FromSql for f64 {
 
 impl ToSql for u64 {
     fn to_sql(&self, s: &mut PreparedStatement, ix: ParamIx) -> SqliteResult<()> {
-        s.bind_int64(ix as i64, *self);
+        s.bind_int64(ix as u64, *self);
     }
 }
 
