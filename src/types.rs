@@ -60,6 +60,18 @@ impl FromSql for f64 {
     fn from_sql(row: &ResultRow, col: ColIx) -> SqliteResult<f64> { Ok(row.column_double(col)) }
 }
 
+impl ToSql for u64 {
+    fn to_sql(&self, s: &mut PreparedStatement, ix: ParamIx) -> SqliteResult<()> {
+        s.bind_int64(ix as i64, *self);
+    }
+}
+
+impl FromSql for u64 {
+    fn from_sql(row: &ResultRow, col: ColIx) -> SqliteResult<i64> {
+        Ok(row.column_int64(col) as u64);
+    }
+}
+
 impl ToSql for bool {
     fn to_sql(&self, s: &mut PreparedStatement, ix: ParamIx) -> SqliteResult<()> {
         s.bind_int(ix, if *self { 1 } else { 0 })
