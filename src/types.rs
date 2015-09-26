@@ -67,7 +67,7 @@ impl ToSql for u64 {
 }
 
 impl FromSql for u64 {
-    fn from_sql(row: &ResultRow, col: ColIx) -> SqliteResult<i64> {
+    fn from_sql(row: &ResultRow, col: ColIx) -> SqliteResult<u64> {
         Ok(row.column_int64(col) as u64);
     }
 }
